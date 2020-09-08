@@ -8,13 +8,17 @@ N, K = map(int, input().split())
 # N 이 1이 될 때까지 반복한다.
 result = 0
 while N > 1:
-    # N 이 K 로 나누어지면 나눈다.
-    if N % K == 0:
-        N /= K
-    # 그렇지 않다면 1 을 뺀다.
+    # N 이 K 로 나누어질 때 까지 1을 뺀다.
+    target = (N // K) * K
+
+    # 나눌 수 없다면 1까지 뺀다.
+    if target == 0:
+        result += N - 1
+        N = 1
+    # 나눌 수 있다면 나눈다.
     else:
-        N -= 1
-    result += 1
+        result += N - target + 1
+        N = target // K
 
 # 답을 출력한다.
 print(result)
