@@ -1,3 +1,5 @@
 # environment for python
 /venv
+
+# jetBrains
 .idea/
