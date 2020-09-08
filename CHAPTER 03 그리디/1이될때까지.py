@@ -7,9 +7,7 @@ N, K = map(int, input().split())
 
 # N 이 1이 될 때까지 반복한다.
 result = 0
-while True:
-    if N == 1:
-        break
+while N > 1:
     # N 이 K 로 나누어지면 나눈다.
     if N % K == 0:
         N /= K
