@@ -6,21 +6,26 @@
 N = int(input())
 
 # 이동할 계획이 주어진다.
-plan = list(input().split())
+plan = input().split()
 
-# 이동한다.
 x, y = 1, 1
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+move_types = ['L', 'R', 'U', 'D']
+# 이동한다.
+nx, ny = 0, 0
 for p in plan:
-    # 공간을 벗어나는 움직임은 무시한다.
-    # 그게 아니라면 움직인다.
-    if p == 'L' and y != 1:
-        y -= 1
-    elif p == 'U' and x != 1:
-        x -= 1
-    elif p == 'R' and y != N:
-        y += 1
-    elif p == 'D' and x != N:
-        x += 1
+    # 이동 후 좌표를 구한다.
+    for i in range(len(move_types)):
+        if p == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    # 공간을 벗어난 경우라면 무시한다.
+    if nx < 1 or ny < 1 or nx > N or ny > N:
+        continue
+        print("ignored")
+    # 이동한다.
+    x, y = nx, ny
 
 # 답을 출력한다.
 print(x, y)
