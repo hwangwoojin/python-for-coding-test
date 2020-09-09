@@ -2,6 +2,13 @@
 # 실전문제
 # 게임 개발
 
+
+# 왼쪽으로 회전하는 함수
+def turn_left():
+    global d
+    d = (d + 3) % 4
+
+
 # 맵 크기
 N, M = map(int, input().split())
 # 캐릭터 위치
@@ -21,27 +28,27 @@ visit_data = [[0 for col in range(M)] for row in range(N)]
 visit_data[x][y] = 1
 
 # 이동한다.
+count = 0
 result = 1
 is_land = True
 while is_land:
-    has_target = False
-    for i in range(4):
-        # 현재 위치에서 현재 방향을 기준으로 왼쪽 방향부터 차례대로 갈 곳을 정한다.
-        d = (d + 3) % 4
-        target_direction = direction[d]
-        # 왼쪽에 아직 가보지 않은 칸이 존재한다면 왼쪽으로 회전한 다음 한칸 전진한다.
-        # 왼쪽 방향에 가보지 않은 칸이 없다면 왼쪽으로 회전만 한다.
-        dx, dy = x + target_direction[0], y + target_direction[1]
-        if map_data[dx][dy] == 0 and visit_data[dx][dy] == 0:
-            x, y = dx, dy
-            visit_data[x][y] = 1
-            has_target = True
-            result += 1
-            break
+    # 현재 위치에서 현재 방향을 기준으로 왼쪽 방향부터 차례대로 갈 곳을 정한다.
+    turn_left()
+    count += 1
+    target_direction = direction[d]
+    # 왼쪽에 아직 가보지 않은 칸이 존재한다면 왼쪽으로 회전한 다음 한칸 전진한다.
+    # 왼쪽 방향에 가보지 않은 칸이 없다면 왼쪽으로 회전만 한다.
+    dx, dy = x + target_direction[0], y + target_direction[1]
+    if map_data[dx][dy] == 0 and visit_data[dx][dy] == 0:
+        x, y = dx, dy
+        visit_data[x][y] = 1
+        count = 0
+        result += 1
     # 네 방향 모두 가본 칸이거나 바다이면 바라보는 방향을 유지한 채로 한칸 뒤로 간다.
-    # 뒤쪽이 바다이면 움직임을 멈춘다.
-    if not has_target:
+    if count == 4:
         x, y = x - direction[d][0], y - direction[d][1]
+        count = 0
+        # 뒤쪽이 바다이면 움직임을 멈춘다.
         if map_data[x][y] == 1:
             is_land = False
 
