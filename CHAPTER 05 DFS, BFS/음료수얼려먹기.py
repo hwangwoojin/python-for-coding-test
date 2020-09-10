@@ -11,9 +11,6 @@ for row in range(N):
     col = list(map(int, input().split()))
     ice.append(col)
 
-# dfs 를 위한 스택
-stack = []
-
 # 인근 방향
 direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
