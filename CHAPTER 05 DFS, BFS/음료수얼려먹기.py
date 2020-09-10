@@ -34,7 +34,6 @@ def dfs(x, y):
             dfs(dx, dy)
 
 
-
 # 틀의 모든 부분을 탐색한다.
 result = 0
 for i in range(N):
