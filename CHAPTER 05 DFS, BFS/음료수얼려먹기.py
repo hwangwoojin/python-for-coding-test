@@ -24,25 +24,29 @@ direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 # dfs 함수
 # 칸막이가 아닌, 방문하지 않은 모든 구멍을 방문한다.
 def dfs(x, y):
-    # 현재 노드 방문 처리
-    visited[x][y] = True
-    # 현재 노드 주변의 다른 노드를 재귀적으로 방문
-    for d in direction:
-        dx, dy = x + d[0], y + d[1]
-        # 그래프가 범위를 벗어나지 않았고, 칸막이가 아니며, 방문하지 않은 경우에만 방문한다.
-        if 0 <= dx < N and 0 <= dy < M and ice[dx][dy] == 0 and not visited[dx][dy]:
-            dfs(dx, dy)
+    # 범위를 벗어나면 즉시 종료
+    if x <= -1 or x >= N or y <= -1 or y >= M:
+        return False
+    # 칸막이인 경우 즉시 종료
+    if ice[x][y] == 1:
+        return False
+    # 현재 노드를 방문하지 않은 경우 방문 처리한다.
+    if not visited[x][y]:
+        visited[x][y] = True
+        # 현재 노드 주변의 다른 노드를 재귀적으로 방문
+        for d in direction:
+            dfs(x + d[0], y + d[1])
+        return True
+    # 현재 노드를 이미 방문한 경우
+    return False
 
 
 # 틀의 모든 부분을 탐색한다.
 result = 0
 for i in range(N):
     for j in range(M):
-        # 칸막이가 아닌, 방문하지 않은 모든 구멍을 방문한다.
-        if ice[i][j] == 0 and not visited[i][j]:
-            # 그래프 탑색으로 방문하자
-            dfs(i, j)
-            # result 에 1 을 더한다.
+        # 그래프 탑색으로 방문하자
+        if dfs(i, j):
             result += 1
 
 # 답을 출력한다.
