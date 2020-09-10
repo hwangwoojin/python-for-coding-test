@@ -3,7 +3,6 @@
 # 미로 탈출
 
 from collections import deque
-INF = 999999
 
 # N, M 이 주어진다.
 N, M = map(int, input().split())
