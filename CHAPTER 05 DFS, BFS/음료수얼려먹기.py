@@ -11,9 +11,6 @@ for row in range(N):
     col = list(map(int, input().split()))
     ice.append(col)
 
-# 방문 여부
-visited = [[False] * M for _ in range(N)]
-
 # dfs 를 위한 스택
 stack = []
 
@@ -31,8 +28,8 @@ def dfs(x, y):
     if ice[x][y] == 1:
         return False
     # 현재 노드를 방문하지 않은 경우 방문 처리한다.
-    if not visited[x][y]:
-        visited[x][y] = True
+    if ice[x][y] == 0:
+        ice[x][y] = 1
         # 현재 노드 주변의 다른 노드를 재귀적으로 방문
         for d in direction:
             dfs(x + d[0], y + d[1])
