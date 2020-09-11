@@ -11,8 +11,7 @@ for i in range(N):
     numbers.append(int(input()))
 
 # 내립차순으로 정렬한다.
-numbers.sort()
-result = numbers[::-1]
+result = sorted(numbers, reverse=True)
 
 # 답을 출력한다.
 for i in result:
