@@ -12,14 +12,8 @@ for i in range(N):
     name, grade = line[0], int(line[1])
     data.append((name, grade))
 
-
-# 성적을 기준으로 정렬하는 함수
-def setting(e):
-    return e[1]
-
-
 # 성적이 낮은 순서대로 정렬한다.
-result = sorted(data, key=setting)
+result = sorted(data, key=lambda e: e[1])
 
 # 이름을 성적이 낮은 순서대로 출력한다
 for i in result:
