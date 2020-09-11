@@ -15,4 +15,5 @@ numbers.sort()
 result = numbers[::-1]
 
 # 답을 출력한다.
-print(result)
+for i in result:
+    print(i, end=' ')
