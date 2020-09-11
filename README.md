@@ -9,3 +9,5 @@
 [Chaptor 04 구현](https://github.com/hwangwoojin/python-for-coding-test/tree/master/CHAPTER%2004%20구현)
 
 [Chaptor 05 DFS, BFS](https://github.com/hwangwoojin/python-for-coding-test/tree/master/CHAPTER%2005%20DFS%2C%20BFS)
+
+[Chaptor 06 정렬](https://github.com/hwangwoojin/python-for-coding-test/tree/master/%20CHAPTER%2006%20정렬)
