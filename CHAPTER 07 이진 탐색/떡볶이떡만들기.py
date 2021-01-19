@@ -8,19 +8,27 @@
 N, M = map(int, input().split())
 list_N = list(map(int, input().split()))
 
-# 가장 긴 떡의 길이
-list_N.sort()
-max_N = list_N[N - 1]
+# 첫점과 끝점
+start = 0
+end = max(list_N)
 
-# 위에서부터 최대높이까지 자른다.
-# H: 높이
-for H in range(max_N - 1, 0, -1):
-    # H 로 잘랐을 때 떡의 길이와 M 을 비교한다.
-    # 같으면 출력
-    length = 0
+# 이진 탐색 수행을 통해 구한다.
+# 파라메트릭 서치
+result = 0
+while start <= end:
+    total = 0
+    mid = (start + end) // 2
     for i in list_N:
-        if i > H:
-            length += (i - H)
-    if length == M:
-        print(H)
-        break
+        if i > mid:
+            total += i - mid
+    # 부족하면 왼쪽으로 이동 (더 자르기)
+    if total < M:
+        end = mid - 1
+    # 충분하면 오른쪽으로 이동 (덜 자르기)
+    else:
+        # 최대한의 값을 구해야 하므로 result 에 기록만 하고 계속 수행
+        result = mid
+        start = mid + 1
+
+# 정답 출력
+print(result)
